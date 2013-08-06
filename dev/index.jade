@@ -1,0 +1,102 @@
+!!! 5
+html(ng-app='app')
+  head
+    meta(http-equiv='Content-Type', content='text/html;charset=UTF-8')
+    meta(http-equiv="X-UA-Compatible", content="chrome=1,IE=edge")
+    meta(name='description', content='')
+    meta(name='author', content='Just')
+    title QNAP非官方產品選擇器
+
+    // Lib
+    link(rel='stylesheet', type='text/css', href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css')
+    script(type='text/javascript', src='http://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js')
+    script(type='text/javascript', src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.5.0.min.js")
+
+    //if lt IE 9
+    script(src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js")
+
+    // Page
+    script(type='text/javascript', src='./script/index.js')
+    link(rel='stylesheet', type='text/css', href='./style/index.css')
+
+  body#viewport(ng-controller="MainCtrl")
+    #select
+      .item
+        .subject 硬碟數量
+        .wrap
+          label 數量
+          .btn-group
+            button(type="button",class="btn",ng-model="factor.hdd_bay[1]",btn-checkbox) 1
+            button(type="button",class="btn",ng-model="factor.hdd_bay[2]",btn-checkbox) 2
+            button(type="button",class="btn",ng-model="factor.hdd_bay[4]",btn-checkbox) 4
+            button(type="button",class="btn",ng-model="factor.hdd_bay[5]",btn-checkbox) 5
+            button(type="button",class="btn",ng-model="factor.hdd_bay[6]",btn-checkbox) 6
+            button(type="button",class="btn",ng-model="factor.hdd_bay[8]",btn-checkbox) 8
+            button(type="button",class="btn",ng-model="factor.hdd_bay[10]",btn-checkbox) 10
+        .wrap
+          label eSATA需求
+          .btn-group
+            button.btn(type="button",ng-model="factor.eSATA",btn-radio="0") 0
+            button.btn(type="button",ng-model="factor.eSATA",btn-radio="1") 1
+            button.btn(type="button",ng-model="factor.eSATA",btn-radio="2") 2
+        label
+          input(type="checkbox",ng-model="factor.hdd_sata3")
+          | 支援SATA3
+        label
+          input(type="checkbox",ng-model="factor.hdd_ssd")
+          | 支援SSD
+        .subject 核心
+        .wrap
+          label CPU類型
+          .btn-group
+            button.btn(type="button",ng-model="factor.cpu_core",btn-radio="'Any'") Any
+            button.btn(type="button",ng-model="factor.cpu_core",btn-radio="'Intel'") Intel
+            button.btn(type="button",ng-model="factor.cpu_core",btn-radio="'Marvell'") Marvell
+        label
+          input(type="checkbox",ng-model="factor.qts4")
+          | 支援QTS4.0
+        label
+          input(type="checkbox",ng-model="factor.vmware")
+          | 支援vmware
+        .subject LAN網路
+        .wrap
+          label 基本需求
+          .btn-group
+            button.btn(type="button",ng-model="factor.lan_num",btn-radio="0") 0
+            button.btn(type="button",ng-model="factor.lan_num",btn-radio="1") 1
+            button.btn(type="button",ng-model="factor.lan_num",btn-radio="2") 2
+        label
+          input(type="checkbox",ng-model="factor.lan_10g")
+          | 支援10Gbps
+        .subject USB連接埠
+        .wrap
+          label 基本需求
+          .btn-group
+            button.btn(type="button",ng-model="factor.usb_num",btn-radio="0") 0
+            button.btn(type="button",ng-model="factor.usb_num",btn-radio="1") 1
+            button.btn(type="button",ng-model="factor.usb_num",btn-radio="2") 2
+            button.btn(type="button",ng-model="factor.usb_num",btn-radio="3") 3
+            button.btn(type="button",ng-model="factor.usb_num",btn-radio="4") 4
+            button.btn(type="button",ng-model="factor.usb_num",btn-radio="5") 5
+            button.btn(type="button",ng-model="factor.usb_num",btn-radio="6") 6
+            button.btn(type="button",ng-model="factor.usb_num",btn-radio="7") 7
+        label
+          input(type="checkbox",ng-model="factor.usb_3")
+          | 支援USB3.0
+    #list
+      .item(ng-repeat="item in items | filter:factor") 
+        .wrap
+          .name {{item.name}}
+          .photo: img(src="{{item.photo}}")
+          button(class="btn btn-info",type="button",ng-click="page($index)") Page
+          button(class="btn btn-danger",type="button",ng-click="buy($index)") Buy
+    //-  | startFrom:page.start | limitTo:page.count
+    //- .page-tools(onselectstart='return false')
+    //-   .item.prev-page(ng-click="gotoPage(page.now-1)",ng-class="{'disable': pageDisable(-1)}") &nbsp;
+    //-   .item(ng-click="gotoPage(page.now-2)",ng-class="{'disable': pageDisable(-2)}") {{page.now-2}}
+    //-   .item(ng-click="gotoPage(page.now-1)",ng-class="{'disable': pageDisable(-1)}") {{page.now-1}}
+    //-   .item.now-page {{page.now}}
+    //-   .item(ng-click="gotoPage(page.now+1)",ng-class="{'disable': pageDisable(+1)}") {{page.now+1}}
+    //-   .item(ng-click="gotoPage(page.now+2)",ng-class="{'disable': pageDisable(+2)}") {{page.now+2}}
+    //-   .item.next-page(ng-click="gotoPage(page.now+1); $event.preventDefault();",ng-dblclick="$event.preventDefault()",ng-class="{'disable': pageDisable(+1)}") &nbsp;
+        

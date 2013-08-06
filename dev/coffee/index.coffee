@@ -531,7 +531,6 @@ app = angular.module('app', ['ui.bootstrap']);
 
 app.filter 'filter', () ->
   (items,factor) ->
-    console.log factor
     response = []
     angular.forEach items, (item, key) ->
       return if factor.cpu_core isnt 'Any' and factor.cpu_core isnt item.cpu_core

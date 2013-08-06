@@ -514,7 +514,6 @@ app.filter('filter', function() {
   return function(items, factor) {
     var response;
 
-    console.log(factor);
     response = [];
     angular.forEach(items, function(item, key) {
       if (factor.cpu_core !== 'Any' && factor.cpu_core !== item.cpu_core) {

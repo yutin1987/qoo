@@ -88,8 +88,8 @@ html(ng-app='app')
         .wrap
           .name {{item.name}}
           .photo: img(src="{{item.photo}}")
-          button(class="btn btn-info",type="button",ng-click="page($index)") Page
-          button(class="btn btn-danger",type="button",ng-click="buy($index)") Buy
+          button(class="btn btn-info",type="button",ng-click="page(item.name)") Page
+          button(class="btn btn-danger",type="button",ng-click="buy(item.name)") Buy
     //-  | startFrom:page.start | limitTo:page.count
     //- .page-tools(onselectstart='return false')
     //-   .item.prev-page(ng-click="gotoPage(page.now-1)",ng-class="{'disable': pageDisable(-1)}") &nbsp;

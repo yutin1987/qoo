@@ -576,8 +576,13 @@ MainCtrl = ($scope) ->
     usb_num: 0
     usb_3: off
 
-  $scope.buy = ($index) ->
-    window.open('http://ecshweb.pchome.com.tw/search/v2/?q='+$scope.items[$index].name)
+  $scope.product = {}
 
-  $scope.page = ($index) ->
-    window.open($scope.items[$index].page)
+  angular.forEach $scope.items, (item, key) ->
+    $scope.product[item.name] = item
+
+  $scope.buy = (name) ->
+    window.open('http://ecshweb.pchome.com.tw/search/v2/?q='+$scope.product[name].name)
+
+  $scope.page = (name) ->
+    window.open($scope.product[name].page)

@@ -579,10 +579,14 @@ MainCtrl = function($scope) {
     usb_num: 0,
     usb_3: false
   };
-  $scope.buy = function($index) {
-    return window.open('http://ecshweb.pchome.com.tw/search/v2/?q=' + $scope.items[$index].name);
+  $scope.product = {};
+  angular.forEach($scope.items, function(item, key) {
+    return $scope.product[item.name] = item;
+  });
+  $scope.buy = function(name) {
+    return window.open('http://ecshweb.pchome.com.tw/search/v2/?q=' + $scope.product[name].name);
   };
-  return $scope.page = function($index) {
-    return window.open($scope.items[$index].page);
+  return $scope.page = function(name) {
+    return window.open($scope.product[name].page);
   };
 };
